@@ -1,0 +1,35 @@
+from math import hypot
+
+class Vector:
+
+	def __init__(self, x=0, y=0):
+		self.x = x
+		self.y = y
+
+	def __repr__(self):
+		return 'Vector(%r, %r)' % (self.x, self.y)
+
+	def __abs__(self):
+		return hypot(self.x, self.y)
+
+	def __bool__(self):
+		return bool(abs(self))
+
+	def __add__(self, other):
+		x = self.x + other.x
+		y = self.y + other.y
+		return Vector(x,y)
+
+	def __mult__(self, scalar):
+		return Vector(self.x * scalar, self.y * scalar)
+
+v = Vector(1,3)
+print('Vector v is {vector}'.format(vector=v))
+print(str(v)) # when __str__ no implemented, python will call __repr__ by default.
+
+print(bool(v)) # call __bool__ by default. If not implemented, call __len__. In that case, if len returns 0, the bool returns False.
+
+y = Vector(5,6)
+print('Vector y is {vector}'.format(vector=y))
+x = v+y
+print('Vector v+y is {vector}'.format(vector=x))
